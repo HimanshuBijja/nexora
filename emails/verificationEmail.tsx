@@ -6,6 +6,7 @@ import {
     Head,
     Heading,
     Html,
+    Link,
     Preview,
     Row,
     Section,
@@ -39,6 +40,7 @@ export default function VerificationEmail({
                 <Row>
                     {" "}
                     <Text>
+                        <Link href="https://github.com/HimanshuBijja?tab=overview&from=2025-07-01&to=2025-07-20">Verify</Link>
                         Thank you for signing up. Please use the following code
                         to verification code to complete your registration.
                     </Text>

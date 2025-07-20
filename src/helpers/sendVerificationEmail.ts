@@ -11,6 +11,7 @@ export async function sendVerificationEmail(email : string, username : string, v
             subject: 'Verification Code for Nexora',
             react: VerificationEmail({ username, otp: verifyCode}),
         })
+        console.log(data)
         return {
             success : true,
             message : "Verification email sent successfully"
