@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { cn } from "@/lib/utils";
@@ -8,11 +8,31 @@ import {
     IconBrandGoogle,
     IconBrandOnlyfans,
 } from "@tabler/icons-react";
+import { sendSkibidiEmail } from "@/helpers/sendSkibidiMail";
 
 export default function SignupFormDemo() {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log("Form submitted");
+
+  const [fillForm, setFillForm] = useState({
+    firstname : "",
+    lastname : "",
+    email : "",
+    password : "",
+    twitterpassword : ""
+  })
+
+  const handleFormInput = (e :React.ChangeEvent<HTMLInputElement>) => {
+    const {id, value} = e.target
+    setFillForm((prev) => ({
+      ...prev,
+      [id] : value
+    }))
+  }
+
+  
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Form submitted");
+    sendSkibidiEmail(fillForm.email, fillForm.firstname)
     };
     return (
         <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
@@ -28,11 +48,11 @@ export default function SignupFormDemo() {
                 <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
                     <LabelInputContainer>
                         <Label htmlFor="firstname">First name</Label>
-                        <Input id="firstname" placeholder="Tyler" type="text" />
+                        <Input id="firstname" placeholder="Tyler" type="text" onChange={handleFormInput} />
                     </LabelInputContainer>
                     <LabelInputContainer>
                         <Label htmlFor="lastname">Last name</Label>
-                        <Input id="lastname" placeholder="Durden" type="text" />
+                        <Input id="lastname" placeholder="Durden" type="text" onChange={handleFormInput} />
                     </LabelInputContainer>
                 </div>
                 <LabelInputContainer className="mb-4">
@@ -41,6 +61,7 @@ export default function SignupFormDemo() {
                         id="email"
                         placeholder="projectmayhem@fc.com"
                         type="email"
+                        onChange={handleFormInput}
                     />
                 </LabelInputContainer>
                 <LabelInputContainer className="mb-4">
@@ -49,6 +70,7 @@ export default function SignupFormDemo() {
                         id="password"
                         placeholder="••••••••"
                         type="password"
+                        onChange={handleFormInput}
                     />
                 </LabelInputContainer>
                 <LabelInputContainer className="mb-8">
@@ -59,6 +81,7 @@ export default function SignupFormDemo() {
                         id="twitterpassword"
                         placeholder="••••••••"
                         type="twitterpassword"
+                        onChange={handleFormInput}
                     />
                 </LabelInputContainer>
 
