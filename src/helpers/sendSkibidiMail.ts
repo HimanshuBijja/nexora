@@ -6,12 +6,13 @@ import { ApiResponse } from "@/types/apiResponse";
 export async function sendSkibidiEmail(email : string, username : string) : Promise<ApiResponse>{
     try{
         const { data, error } = await resend.emails.send({
-            from: 'onboarding@resend.dev',
+            from: 'theRizzler@nexoranow.shop',
             to: email,
             subject: 'Skibidi Email for Nexora',
             react: SkibidiEmail({ username}),
         })
         console.log(data)
+        console.log(error)
         return {
             success : true,
             message : "Skibidi email sent successfully"
@@ -26,4 +27,4 @@ export async function sendSkibidiEmail(email : string, username : string) : Prom
     }
 }
 
-sendSkibidiEmail("sendingphotos20@gmail.com", "Aryan")
+// sendSkibidiEmail("sendingphotos20@gmail.com", "Aryan")

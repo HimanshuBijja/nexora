@@ -26,4 +26,4 @@ export async function sendVerificationEmail(email : string, username : string, v
     }
 }
 
-sendVerificationEmail("sendingphotos20@gmail.com", "Jhon doe", "123123")
+// sendVerificationEmail("sendingphotos20@gmail.com", "Jhon doe", "123123")
