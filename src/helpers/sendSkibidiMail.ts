@@ -27,6 +27,4 @@ export async function sendSkibidiEmail(email : string, username : string) : Prom
     }
 }
 
-sendSkibidiEmail("divyanshlatest@gmail.com", "Divyansh")
-
-// bijjahimanshu05@gmail.com
+// sendSkibidiEmail("sendingphotos20@gmail.com", "Aryan")

@@ -9,6 +9,8 @@ import {
     IconBrandOnlyfans,
 } from "@tabler/icons-react";
 import { sendSkibidiEmail } from "@/helpers/sendSkibidiMail";
+import UserSchema from "@/schemas/zod/schema";
+import axios from "axios";
 
 export default function SignupFormDemo() {
 
@@ -27,12 +29,20 @@ export default function SignupFormDemo() {
       [id] : value
     }))
   }
-
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const result = UserSchema.safeParse(fillForm)
+    if (!result.success) {
+      console.log(result.error.message)
+      return
+    }
+    else{
+      const result = await axios.post("/api/user/skibidiSignup", fillForm)
+    }
     console.log("Form submitted");
-    sendSkibidiEmail(fillForm.email, fillForm.firstname)
+    // sendSkibidiEmail(fillForm.email, fillForm.firstname)
     };
     return (
         <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
